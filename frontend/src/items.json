@@ -1,0 +1,26 @@
+[
+  {
+    "title": "Invertocat Mug  ",
+    "subtitle": "1 nice Tasse",
+    "raffle": true,
+    "image": "https://cdn.shopify.com/s/files/1/0051/4802/products/3026GHB-Grey_600x600.jpg?v=1586965606"
+  },
+  {
+    "title": "Sticker Pack",
+    "subtitle": "The best thing about stickers is how they stick to things",
+    "raffle": false,
+    "image": "https://cdn.shopify.com/s/files/1/0051/4802/products/stickers_pack_1_600x600.png?v=1520912598"
+  },
+  {
+    "title": "Octopint",
+    "subtitle": "Set of two heavyweight 16 oz. Octopint glasses for your favorite malty beverage. GitHub logo on one side, GitHub mark on the other. Beer me!",
+    "raffle": true,
+    "image": "https://cdn.shopify.com/s/files/1/0051/4802/products/pint-glasses_600x600.png?v=1520976736"
+  },
+  {
+    "title": "Octocat",
+    "subtitle": "For years, the Octocat has been stuck in the realm of two dimensions—but no more! Now she’s crawling off your laptop and onto your desk as a 5\" vinyl figurine.",
+    "raffle": true,
+    "image": "https://cdn.shopify.com/s/files/1/0051/4802/products/Small_Octocat_600x600.png?v=1571377850"
+  }
+]

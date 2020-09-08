@@ -1,0 +1,88 @@
+.card-image {
+    height: 160px;
+    width: auto;
+    display: flex;
+    margin: auto;
+}
+
+html, body, #root, .App {
+    height: 100%;
+}
+
+* {
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.navbar-logo {
+    height: 30px;
+    margin: auto 15px;
+}
+
+.main-navbar {
+    background-color: #4791ff;
+}
+
+.masthead {
+    padding-top: 4.5rem;
+    padding-bottom: 1rem;
+}
+
+.jumbotron-header {
+    color: white;
+    overflow: hidden;
+}
+
+.jumbotron-header > .container {
+    display: flex;
+    flex-flow: column;
+}
+
+.jumbotron {
+    padding: 0;
+}
+
+.jumbotron-bg {
+    background: url("header.jpg") no-repeat scroll center;
+    filter: blur(8px);
+    transform: scale(1.03);
+    overflow: hidden;
+    -webkit-filter: blur(8px);
+    height: 100%;
+    background-size: cover;
+}
+
+.jumbotron-text {
+    color: white;
+    position: absolute;
+    font-weight: 600;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    width: 80%;
+    padding: 20px;
+}
+
+.jumbotron-text > h1 {
+    text-align: center;
+}
+
+.jumbotron-text > .button-container {
+    margin: 3rem auto auto;
+}
+
+#merch {
+    padding-top: 4.5rem;
+    padding-bottom: 1rem;
+}
+
+
+#order {
+    padding-top: 4.5rem;
+    padding-bottom: 1rem;
+}
