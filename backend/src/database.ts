@@ -1,6 +1,6 @@
 import sqlite3 from 'sqlite3';
 
-const DBSOURCE = 'db.sqlite';
+const DBSOURCE = 'data/db.sqlite';
 
 export const db = new sqlite3.Database(DBSOURCE, (err) => {
   if (err) {
@@ -14,8 +14,8 @@ export const db = new sqlite3.Database(DBSOURCE, (err) => {
             name text,
             street text,
             plz text,
-            email text UNIQUE,
-            CONSTRAINT email_unique UNIQUE (email)
+            email text,
+            items text
             )`,
          (err) => {
            if (!err) {

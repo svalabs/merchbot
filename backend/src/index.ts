@@ -11,7 +11,7 @@ yup.setLocale({
   },
 });
 
-const schema = yup.object().shape({
+const schema = yup.object().required().shape({
   name: yup.string().label('Name').required(),
   email: yup.string().label('E-Mail-Adresse').email('Ungültige E-Mail-Adresse').required(),
   address: yup.string().label('Adresse').required(),
@@ -47,13 +47,21 @@ app.get('/orders', (req, res) => {
 });
 
 app.post('/submit', (req, res) => {
-  console.log(req.body);
-  schema.validate(req.body).then((data) => {
-    res.json({
-      message: 'success',
+  schema.validate(req.body, { strict: true, stripUnknown: true }).then((data) => {
+    const INSERT_QUERY =
+        'INSERT INTO orders(name, street, plz, email, items) VALUES(?, ?, ?, ?, ?)';
+    const { address, name, plz, email } = data;
+    const items = data.items.join('|');
+    db.run(INSERT_QUERY, [name, address, plz, email, items], (err) => {
+      if (err) {
+        console.error(err);
+        return res.status(400).json({ error: 'Database error' });
+      }
+      res.json({
+        message: 'success',
+      });
     });
   }).catch((err) => {
     res.status(400).json({ error:err.message });
   });
-
 });
