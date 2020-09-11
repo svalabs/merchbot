@@ -164,7 +164,7 @@ function App() {
                             setError(data.error);
                         }
                     })
-                    .catch(err => console.log(err));
+                    .catch(err => console.log(err.message));
             }}>
                 {error && <Alert variant="danger">
                     {error}
