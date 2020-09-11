@@ -100,6 +100,7 @@ function App() {
     const [plz, setPLZ] = useState<string | null>();
 
     const [error, setError] = useState<string | null>();
+    const [success, setSuccess] = useState<boolean>(false);
 
     const getItem = (name: string) => (
         items.filter((entry) => entry === name).length !== 0
@@ -165,12 +166,17 @@ function App() {
                             return;
                         }
                         setError(null);
+                        setSuccess(true);
                         // TODO: Redirect
                     })
                     .catch(err => setError(`Internal server error: ${err.message}`));
             }}>
                 {error && <Alert variant="danger">
                     {error}
+                </Alert>}
+
+                {success && <Alert variant="success">
+                    Sie wurden erfolgreich in die Liste eingetragen
                 </Alert>}
 
                 <Form.Group controlId="formEmail">
