@@ -153,7 +153,12 @@ function App() {
                     method: "POST",
                     body: JSON.stringify(payload)
                 })
-                    .then(response => response.json())
+                    .then(response => {
+                        if(!response.ok) {
+                            throw new Error(response.statusText);
+                        }
+                        return response.json();
+                    })
                     .then(data => {
                         if('error' in data) {
                             setError(data.error);
