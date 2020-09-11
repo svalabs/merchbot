@@ -23,7 +23,7 @@ const app = express();
 const port = 5000;
 const password = process.env.VOTE_PASSWORD || crypto.randomBytes(20).toString('hex');
 
-app.listen(port, 'localhost', () => console.log(`Listening on port ${port} with the password "${password}"`));
+app.listen(port,  () => console.log(`Listening on port ${port} with the password "${password}"`));
 
 app.use(bodyParser.json());
 
