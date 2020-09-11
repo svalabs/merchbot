@@ -164,7 +164,7 @@ function App() {
                             setError(data.error);
                         }
                     })
-                    .catch(err => console.log(err.message));
+                    .catch(err => console.log("HTTP Error: ", err.message));
             }}>
                 {error && <Alert variant="danger">
                     {error}
