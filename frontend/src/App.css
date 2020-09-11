@@ -3,6 +3,12 @@
     width: auto;
     display: flex;
     margin: auto;
+    user-select: none;
+}
+
+.card-footer {
+    display: flex;
+    justify-content: center;
 }
 
 html, body, #root, .App {
@@ -47,7 +53,7 @@ html {
 }
 
 .jumbotron-bg {
-    background: url("header.jpg") no-repeat scroll center;
+    background: url("assets/header.jpg") no-repeat scroll center;
     filter: blur(8px);
     transform: scale(1.03);
     overflow: hidden;
@@ -85,4 +91,21 @@ html {
 #order {
     padding-top: 4.5rem;
     padding-bottom: 1rem;
+}
+
+#footer {
+    background: #4791ff;
+    color: white;
+    display: flex;
+    min-height: 3rem;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#footer a {
+    color: rgba(255,255,255,.5);
+}
+
+#footer a:hover {
+    color: rgba(255,255,255,.75);
 }
