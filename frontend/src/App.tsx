@@ -162,6 +162,7 @@ function App() {
                     })
                     .then(data => {
                         if('error' in data) {
+                            setSuccess(false);
                             setError(data.error);
                             return;
                         }
@@ -169,7 +170,10 @@ function App() {
                         setSuccess(true);
                         // TODO: Redirect
                     })
-                    .catch(err => setError(`Internal server error: ${err.message}`));
+                    .catch(err => {
+                        setError(`Internal server error: ${err.message}`);
+                        setSuccess(false);
+                    });
             }}>
                 {error && <Alert variant="danger">
                     {error}

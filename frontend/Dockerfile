@@ -1,4 +1,9 @@
-FROM node:10
+FROM node:10 AS builder
 WORKDIR /app
-RUN yarn
-CMD yarn start
+COPY . .
+RUN yarn install && yarn build
+FROM nginx:alpine
+WORKDIR /usr/share/nginx/html
+RUN rm -rf ./*
+COPY --from=builder /app/build .
+ENTRYPOINT ["nginx", "-g", "daemon off;"]
