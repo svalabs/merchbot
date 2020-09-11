@@ -159,7 +159,7 @@ function App() {
                             setError(data.error);
                         }
                     })
-                    .catch(err => setError(err));
+                    .catch(err => console.log(err));
             }}>
                 {error && <Alert variant="danger">
                     {error}
@@ -178,7 +178,7 @@ function App() {
                     <Form.Row>
                         <Col>
                             <Form.Label>Adresse</Form.Label>
-                            <Form.Control placeholder="Musterweg 123" onChange={(event) => setAddress(event.target.value)}/>
+                            <Form.Control required placeholder="Musterweg 123" onChange={(event) => setAddress(event.target.value)}/>
                         </Col>
                         <Col>
                             <Form.Label>PLZ</Form.Label>
