@@ -52,8 +52,15 @@ html {
     padding: 0;
 }
 
-.jumbotron-bg {
+.welcome-screen {
     background: url("assets/header.jpg") no-repeat scroll center;
+}
+
+.success-screen {
+    background: url("assets/success.jpg") no-repeat scroll center;
+}
+
+.jumbotron-bg {
     filter: blur(8px);
     transform: scale(1.03);
     overflow: hidden;

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import logo from './assets/logo.png';
 import './App.css';
 
@@ -76,20 +76,42 @@ const HeaderElement = () => (
     </Navbar>
 );
 
-const Masthead = () => (
-    <Jumbotron className={'jumbotron-header h-100'}>
-        <div className={'jumbotron-bg'}/>
+interface MastheadProps {
+    children: React.ReactNode,
+    cssClassName?: string,
+    id?: string
+}
+
+const Masthead = (props: MastheadProps) => (
+    <Jumbotron className={'jumbotron-header h-100'} id={props.id}>
+        <div className={`jumbotron-bg ${props.cssClassName ? props.cssClassName : ''}` }/>
         <Container className={'jumbotron-text'}>
-            <h1>Hello World!</h1>
-            {Configuration.description}
-            <div className={'button-container'}>
-                <Button size="lg" href={"#merch"}>
-                    Take me to the merch!
-                </Button>
-            </div>
+            {props.children}
         </Container>
     </Jumbotron>
 );
+
+const WelcomeScreen = () => (
+    <Masthead cssClassName={'welcome-screen'}>
+        <h1>{Configuration.title}</h1>
+        {Configuration.description}
+        <div className={'button-container'}>
+            <Button size="lg" href={"#merch"}>
+                Genug geredet, zeig mir den Merch!
+            </Button>
+        </div>
+    </Masthead>
+);
+
+const SuccessScreen = () => {
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
+
+    return (<Masthead cssClassName={'success-screen'}>
+        <h1>Success!</h1>
+    </Masthead>);
+};
 
 function App() {
 
@@ -120,9 +142,9 @@ function App() {
     <div className="App">
         <HeaderElement/>
         <Container className={"h-100 masthead"} fluid id={'home'}>
-            <Masthead/>
+            {success ? <SuccessScreen/> : <WelcomeScreen/>}
         </Container>
-        <Container fluid="md" id={'merch'}>
+        {!success && <Container fluid="md" id={'merch'}>
             <h1>Verfügbarer Merch</h1>
             <Row>
                 <Col>
@@ -133,8 +155,8 @@ function App() {
                     </CardColumns>
                 </Col>
             </Row>
-        </Container>
-        <Container fluid="md" className={"h-100"} id={'order'}>
+        </Container>}
+        {!success && <Container fluid="md" className={"h-100"} id={'order'}>
             <h1>Merch bestellen</h1>
             <Form onSubmit={(data) => {
                 data.preventDefault();
@@ -168,6 +190,9 @@ function App() {
                         }
                         setError(null);
                         setSuccess(true);
+
+                        const successScreen = document.getElementById("success-screen");
+                        successScreen && successScreen.scrollIntoView();
                         // TODO: Redirect
                     })
                     .catch(err => {
@@ -177,10 +202,6 @@ function App() {
             }}>
                 {error && <Alert variant="danger">
                     {error}
-                </Alert>}
-
-                {success && <Alert variant="success">
-                    Sie wurden erfolgreich in die Liste eingetragen
                 </Alert>}
 
                 <Form.Group controlId="formEmail">
@@ -216,7 +237,7 @@ function App() {
                     Bestellen
                 </Button>
             </Form>
-        </Container>
+        </Container>}
         <Container fluid id={'footer'}>
                 <span>Powered by <a href={"https://sva.de"}>SVA</a></span>
                 <span><a href={Configuration.imprint}>Impressum</a></span>
