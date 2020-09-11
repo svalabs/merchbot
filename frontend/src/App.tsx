@@ -162,9 +162,12 @@ function App() {
                     .then(data => {
                         if('error' in data) {
                             setError(data.error);
+                            return;
                         }
+                        setError(null);
+                        // TODO: Redirect
                     })
-                    .catch(err => console.log("HTTP Error: ", err.message));
+                    .catch(err => setError(`Internal server error: ${err.message}`));
             }}>
                 {error && <Alert variant="danger">
                     {error}
