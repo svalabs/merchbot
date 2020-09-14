@@ -47,9 +47,8 @@ const ItemCard = (props: ItemCardProps) => {
         </Card.Body>
         <Card.Footer className={"card-footer"} onClick={() => props.toggleItem(props.title)}>
             <span className="fa-layers fa-fw">
-                {props.getItem(props.title) && <FontAwesomeIcon icon={faCheck}  transform="shrink-1" color="black"/>}
-                <FontAwesomeIcon icon={faSquare} color="#4791ff" transform="grow-6"/>
-
+                {props.getItem(props.title) && <FontAwesomeIcon className={"checkbox-icon"} icon={faCheck} fixedWidth={true} color="black"/>}
+                <FontAwesomeIcon  fixedWidth={true}  icon={faSquare} color="#4791ff" transform="grow-6"/>
             </span>
         </Card.Footer>
     </Card>);
