@@ -15,7 +15,8 @@ export const db = new sqlite3.Database(DBSOURCE, (err) => {
             street text,
             plz text,
             email text,
-            items text
+            items text,
+            city text
             )`,
          (err) => {
            if (!err) {

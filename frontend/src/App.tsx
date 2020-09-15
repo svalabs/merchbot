@@ -119,6 +119,7 @@ function App() {
     const [email, setEMail] = useState<string | null>();
     const [address, setAddress] = useState<string | null>();
     const [plz, setPLZ] = useState<string | null>();
+    const [city, setCity] = useState<string | null>();
 
     const [error, setError] = useState<string | null>();
     const [success, setSuccess] = useState<boolean>(false);
@@ -165,7 +166,8 @@ function App() {
                     name,
                     address,
                     plz,
-                    items
+                    items,
+                    city
                 };
                 fetch('/submit', {
                     headers: {
@@ -223,6 +225,11 @@ function App() {
                             <Form.Control required placeholder="12345" title={"Bitte eine gültige Postleitzahl verwenden"} pattern="^[0-9]{5}$" onChange={(event) => setPLZ(event.target.value)}/>
                         </Col>
                     </Form.Row>
+                </Form.Group>
+
+                <Form.Group controlId="formCity">
+                    <Form.Label>Ort</Form.Label>
+                    <Form.Control required type="text" placeholder="Musterstadt" onChange={(event) => setCity(event.target.value)}/>
                 </Form.Group>
 
                 <Form.Group controlId="formBasicCheckbox">
