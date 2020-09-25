@@ -1,7 +1,7 @@
 version: '3'
 services:
   frontend:
-    build: .
+    build: frontend
     ports:
     - 8080:80
     volumes:
@@ -11,10 +11,10 @@ services:
     depends_on:
       - backend
   backend:
-    build: ../backend/
+    build: backend
     ports:
       - 127.0.0.1:5000:5000
     volumes:
       - ./data/:/app/data
-      - ../backend/:/app
+      - ./backend/:/app
     command: yarn start
