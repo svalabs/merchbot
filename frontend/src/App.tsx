@@ -20,6 +20,7 @@ import Badge from "react-bootstrap/Badge";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faCheck} from '@fortawesome/free-solid-svg-icons';
 import {faSquare} from '@fortawesome/free-regular-svg-icons';
+import {faGithub} from '@fortawesome/free-brands-svg-icons';
 import Alert from 'react-bootstrap/cjs/Alert';
 
 interface ItemFunc {
@@ -158,7 +159,7 @@ function App() {
         </Container>}
         {!success && <Container fluid="md" className={"h-100"} id={'order'}>
             <h1>Merch bestellen</h1>
-            <Form onSubmit={(data) => {
+            <Form autoComplete={"on"} onSubmit={(data) => {
                 data.preventDefault();
                 data.stopPropagation();
                 let payload = {
@@ -179,6 +180,14 @@ function App() {
                 })
                     .then(response => {
                         if(!response.ok) {
+                            response.json().then(data => {
+                                if('error' in data) {
+                                    setError(data.error);
+                                    return;
+                                }
+                                throw new Error(response.statusText);
+                            });
+
                             throw new Error(response.statusText);
                         }
                         return response.json();
@@ -207,29 +216,29 @@ function App() {
 
                 <Form.Group controlId="formEmail">
                     <Form.Label>E-Mail</Form.Label>
-                    <Form.Control required type="email" title="Bitte eine gültige E-Mail-Adresse verwenden" placeholder="max.mustermann@beispiel.de" onChange={(event) => setEMail(event.target.value)}/>
+                    <Form.Control required type="email" title="Bitte eine gültige E-Mail-Adresse verwenden" placeholder="max.mustermann@beispiel.de" name={"shipping email"} autoComplete="email" onChange={(event) => setEMail(event.target.value)}/>
                 </Form.Group>
 
                 <Form.Group controlId="formName">
                     <Form.Label>Name</Form.Label>
-                    <Form.Control required type="text" placeholder="Max Mustermann" onChange={(event) => setName(event.target.value)}/>
+                    <Form.Control required type="text" placeholder="Max Mustermann" name={"name"} autoComplete="shipping name" onChange={(event) => setName(event.target.value)}/>
                 </Form.Group>
                 <Form.Group controlId="formAddress">
                     <Form.Row>
                         <Col>
                             <Form.Label>Adresse</Form.Label>
-                            <Form.Control required placeholder="Musterweg 123" onChange={(event) => setAddress(event.target.value)}/>
+                            <Form.Control required placeholder="Musterweg 123" name={"address"} autoComplete="shipping street-address" onChange={(event) => setAddress(event.target.value)}/>
                         </Col>
                         <Col>
                             <Form.Label>PLZ</Form.Label>
-                            <Form.Control required placeholder="12345" title={"Bitte eine gültige Postleitzahl verwenden"} pattern="^[0-9]{5}$" onChange={(event) => setPLZ(event.target.value)}/>
+                            <Form.Control required placeholder="12345" title={"Bitte eine gültige Postleitzahl verwenden"} pattern="^[0-9]{5}$" name={"zip"} autoComplete="shipping postal-code" onChange={(event) => setPLZ(event.target.value)}/>
                         </Col>
                     </Form.Row>
                 </Form.Group>
 
                 <Form.Group controlId="formCity">
                     <Form.Label>Ort</Form.Label>
-                    <Form.Control required type="text" placeholder="Musterstadt" onChange={(event) => setCity(event.target.value)}/>
+                    <Form.Control required type="text" placeholder="Musterstadt" name={"ship-city"} autoComplete="shipping address-level2" onChange={(event) => setCity(event.target.value)}/>
                 </Form.Group>
 
                 <Form.Group controlId="formBasicCheckbox">
@@ -246,6 +255,7 @@ function App() {
         </Container>}
         <Container fluid id={'footer'}>
                 <span>Powered by <a href={"https://sva.de"}>SVA</a></span>
+                <span>MerchBot on <a target={"_blank"} href={"https://github.com/svalabs/merchbot"}>GitHub <FontAwesomeIcon icon={faGithub} /></a></span>
                 <span><a href={Configuration.imprint}>Impressum</a></span>
         </Container>
     </div>
