@@ -6,11 +6,14 @@
     user-select: none;
 }
 
+.card-title {
+    text-align: center;
+}
+
 .card-footer {
     display: flex;
     justify-content: center;
 }
-
 html, body, #root, .App {
     height: 100%;
 }
