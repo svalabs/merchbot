@@ -116,3 +116,7 @@ html {
 #footer a:hover {
     color: rgba(255,255,255,.75);
 }
+
+.card-columns .card {
+    padding-top: 30px;
+}
