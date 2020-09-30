@@ -254,7 +254,7 @@ function App() {
             </Form>
         </Container>}
         <Container fluid id={'footer'}>
-                <span>Powered by <a href={"https://sva.de"}>SVA</a></span>
+                <span>Powered by <a href={"https://www.sva.de"}>SVA</a></span>
                 <span>MerchBot on <a target={"_blank"} href={"https://github.com/svalabs/merchbot"}>GitHub <FontAwesomeIcon icon={faGithub} /></a></span>
                 <span><a href={Configuration.imprint}>Impressum</a></span>
         </Container>
