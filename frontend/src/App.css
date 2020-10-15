@@ -82,6 +82,7 @@ html {
     z-index: 2;
     width: 80%;
     padding: 20px;
+    text-align: center;
 }
 
 .jumbotron-text > h1 {
